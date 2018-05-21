@@ -14,3 +14,35 @@ finally{
 console.log("xx");// xx
 console.warn("yy");// 警告式yy
 console.assert(3>2,"xx");// 若前面参数结果为false，则返回第二个参数
+
+try {
+    try {
+        throw "oops";
+    }
+    catch (ex) {
+        console.error("inner", ex);// inner opps
+    }
+    finally {
+        console.log("finally");// finally
+    }
+}
+catch (ex) {
+    console.error("outer", ex);
+}
+
+try {
+    try {
+        throw "oops";
+    }
+    catch (ex) {
+        console.error("inner", ex);// inner oops
+        throw ex;
+    }
+    finally {
+        console.log("finally");// finally
+    }
+}
+catch (ex) {
+    console.error("outer", ex);// outer oops
+}
+
