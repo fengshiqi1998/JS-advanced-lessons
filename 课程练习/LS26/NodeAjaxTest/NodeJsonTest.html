@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON-Node-测试</title>
+    <script src="jquery-2.2.2.js"></script>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <input type="text" id="inp">
+    <label id="lab">输入1到7的整数</label>
+
+    <script>
+        $('#btn').click(function(){
+            $.ajax({
+                url:
+                'http://localhost:8080?id='+($('#inp').val()||1),
+                dataType:'JSON',
+                type:'GET',
+                success:function(data){
+                    if(data){
+                        console.log(typeof data,data);
+                        document.getElementById("lab").innerText = JSON.stringify(data);
+                    }
+                },
+                error:function(xhr){
+                    alert('error:'+JSON.stringify(xhr));
+                }
+            })
+        })
+    </script>
+</body>
+</html>
