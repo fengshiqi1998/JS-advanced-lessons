@@ -78,12 +78,91 @@ map.set(-0, 123);
 map.get(+0); // 123
 
 //Map原型属性和方法
+let map = new Map();
+map.set('foo',true);
+map.set('bar',false);
+map.size;// 2
 
+var m = new Map();
+m.set("edition",6);// 键是字符串
+m.set(262,"standard");// 键是数值
+m.set(undefined,"nah");// 键是undefined
+var hello = function() {console.log("hello");};
+m.set(hello, "Hello ES6!"); // 键是函数
+m.get(hello); // Hello ES6! get方法读取key对应的键值，如果找不到key，返回undefined。
+// set方法返回的是Map本身，因此可以采用链式写法
+let map = new Map().set(1,'a').set(2,'b').set(3,'c');
+
+//has方法返回一个布尔值，表示某个键是否在Map数据结构中。
+var m = new Map();
+m.set("edition", 6);
+m.set(262, "standard");
+m.set(undefined, "nah");
+m.has("edition"); // true
+m.has("years"); // false
+m.has(262); // true
+m.has(undefined); // true
+
+//delete方法删除某个键，返回true。如果删除失败，返回false。
+var m = new Map();
+m.set(undefined, "nah");
+m.has(undefined); // true
+m.delete(undefined);
+m.has(undefined); // false
+
+//clear方法清除所有成员，没有返回值。
+let map = new Map();
+map.set('foo', true);
+map.set('bar', false);
+map.size // 2
+map.clear();
+map.size // 0
 
 //Map遍历相关的方法
+let map = new Map([
+    ['F', 'no'],
+    ['T', 'yes'],
+]);
+console.log(typeof map.keys());// object 注意类型是对象，不是数组
+for (let key of map.keys()) {
+    console.log(key);
+}
+// "F"
+// "T"
+console.log(typeof map.values());// object 注意类型是对象，不是数组
+for (let value of map.values()) {
+    console.log(value);
+}
+// "no"
+// "yes"
+for (let item of map.entries()) {
+    console.log(item[0], item[1]);
+}
+// "F" "no"
+// "T" "yes"
+// 或者 回顾解构赋值
+for (let [key, value] of map.entries()) {
+    console.log(key, value);
+}
 
+for (let [key, value] of map) {// 等同于使用map.entries()
+    console.log(key, value);
+}
 
 //Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）。
+let map = new Map([
+    [1, 'one'],
+    [2, 'two'],
+    [3, 'three'],
+]);
+console.log([...map.keys()]);
+// [1, 2, 3]
+console.log([...map.values()]);
+// ['one', 'two', 'three']
+console.log([...map.entries()]);
+// [[1,'one'], [2, 'two'], [3, 'three']]
+console.log([...map]);
+// [[1,'one'], [2, 'two'], [3, 'three']]
 
 //结合数组的map方法、filter方法，可以实现Map的遍历和过滤（Map本身没有map和filter方法）。
 let map0 = new Map()
